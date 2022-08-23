@@ -62,7 +62,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: /github/workspace/_site/
-          key: ${{ runner.os }}-site
+          key: ${{ steps.get-date.outputs.date }}-site
           
   telemetry:
     needs: build
@@ -89,7 +89,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ./_site
-          key: ${{ runner.os }}-site
+          key: ${{ steps.get-date.outputs.date }}-site
       - name: Check cached site
         if: steps.get-cached-site.outputs.cache-hit != 'true'
         run: exit 1
