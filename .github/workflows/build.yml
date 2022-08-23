@@ -35,9 +35,27 @@ jobs:
           verbose: true
           # GitHub token
           token: ${{ github.token }}
-  deploy:
+  upload:
     needs: build
     runs-on: ubuntu-latest
+    steps:
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v1.0.3
+        with:
+          # Path of the directory containing the static assets.
+          path: ./_site/
+          # Duration after which artifact will expire in days.
+          retention-days: 1
+  
+  deploy:
+    needs: upload
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy GitHub Pages site
         uses: actions/deploy-pages@v1.0.9
