@@ -46,6 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate Site
+        uses: actions/cache@v2
         if: steps.cache-site.outputs.cache-hit != 'true'
           exit 1
       - name: Upload GitHub Pages artifact
