@@ -88,7 +88,7 @@ jobs:
         id: get-cached-site
         uses: actions/cache@v2
         with:
-          path: /github/workspace/_site/
+          path: ./_site
           key: ${{ runner.os }}-site
       - name: Check cached site
         if: steps.get-cached-site.outputs.cache-hit != 'true'
@@ -97,7 +97,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1.0.3
         with:
           # Path of the directory containing the static assets.
-          path: /github/workspace/_site/
+          path: ./_site
           # Duration after which artifact will expire in days.
           retention-days: 1
   
