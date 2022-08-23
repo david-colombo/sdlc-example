@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Harden Runner
         uses: step-security/harden-runner@v1.4.5
+        with:
+          egress-policy: audit
       - name: Build Jekyll for GitHub Pages
         uses: actions/jekyll-build-pages@v1.0.5
         with:
