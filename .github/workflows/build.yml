@@ -33,7 +33,7 @@ jobs:
           repository: ${{ github.repository }}
           token: ${{ github.token }}
           # Relative path under $GITHUB_WORKSPACE to place the repository
-          path: ./_site
+          path: ./
           # Whether to execute `git clean -ffdx && git reset --hard HEAD` before fetching
           clean: true
           # Number of commits to fetch. 0 indicates all history for all branches and tags.
