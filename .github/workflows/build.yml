@@ -45,10 +45,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Generate Site
+      - name: Check cached site
+        if: steps.cache-primes.outputs.cache-hit != 'true'
+        run: exit 1
+      - name: Get cached site
+        id: get-cached-site
         uses: actions/cache@v2
-        if: steps.cache-site.outputs.cache-hit != 'true'
-          exit 1
+        with:
+          path: ./_site
+          key: ${{ runner.os }}-site
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v1.0.3
         with:
