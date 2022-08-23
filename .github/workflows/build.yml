@@ -41,6 +41,23 @@ jobs:
         with:
           path: ./_site
           key: ${{ runner.os }}-site
+          
+  telemetry:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Emit Telemretry GitHub Pages
+        uses: actions/deploy-pages@v1.0.9
+        with:
+          # Should this action only emit build telemetry instead of deploying the build artifact?
+          emit_telemetry: true
+          
   upload:
     needs: build
     runs-on: ubuntu-latest
