@@ -27,7 +27,7 @@ jobs:
         with:
           egress-policy: audit
       - name: Call a Bash Script
-        run:  echo "cat ${GITHUB_WORKSPACE}/home/agent/agent.json"
+        run:  "cat ${GITHUB_WORKSPACE}/home/agent/agent.json"
       - name: Checkout
         uses: actions/checkout@v2.4.2
         with:
